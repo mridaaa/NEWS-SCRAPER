@@ -1,3 +1,9 @@
+/*
+ * December 28, 2023
+ * Author: Mrida Yawale
+ * 
+ */
+
 public class NewsItem {
     private String headline;
     private String channelLogo;
@@ -72,9 +78,22 @@ public class NewsItem {
         int infoEndIndex = itemHTML.indexOf(endPattern);
         infoBeginIndex += startInc;
         infoEndIndex += endInc;
+
+        if(infoBeginIndex == -1 || infoEndIndex == -1 || infoEndIndex < infoBeginIndex) {
+            return Constants.NOT_AVAILABLE;
+        }
+
         String info = itemHTML.substring(infoBeginIndex, infoEndIndex);
 
         return info;
+    }
+
+
+
+
+    @Override
+    public String toString() {
+        return "Logo:" + this.channelLogo + "\n" + "Time Posted: " + this.postTime + "\nHeadline: " + this.headline + " \nSummary: " + this.summary + "\n";
     }
 
 }
