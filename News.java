@@ -1,30 +1,35 @@
+// getters + setters for top three
 public class News {
-    NewsItem one;
-    NewsItem two;
-    NewsItem three;
+    NewsItem firstItem;
+    NewsItem secondItem;
+    NewsItem thirdItem;
 
-    public NewsItem getOne() {
-        return one;
+    public NewsItem getFirstItem() {
+        return firstItem;
     }
 
-    public void setOne(NewsItem one) {
-        this.one = one;
+    public void setFirstItem(NewsItem firstItem) {
+        this.firstItem = firstItem;
     }
 
-    public NewsItem getTwo() {
-        return two;
+    public NewsItem getSecondItem() {
+        return secondItem;
     }
 
-    public void setTwo(NewsItem two) {
-        this.two = two;
+    public void setSecondItem(NewsItem secondItem) {
+        this.secondItem = secondItem;
     }
 
-    public NewsItem getThree() {
-        return three;
+    public NewsItem getThirdItem() {
+        return thirdItem;
     }
 
-    public void setThree(NewsItem three) {
-        this.three = three;
+    public void setThirdItem(NewsItem thirdItem) {
+        this.thirdItem = thirdItem;
+    }
+
+    public String toString() {
+        return "\nFIRST---:\n" + this.firstItem + "\nSECOND:---\n" + this.secondItem + " \nTHIRD:---\n" + this.thirdItem;
     }
 
 }
