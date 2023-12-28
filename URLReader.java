@@ -1,4 +1,6 @@
-
+// Anushka Dole & Mrida Yawale
+// December 28, 2023
+// Code to read URL
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
