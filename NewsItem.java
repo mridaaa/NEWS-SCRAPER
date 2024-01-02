@@ -4,6 +4,12 @@
  * 
  */
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class NewsItem {
     private String headline;
     private String channelLogo;
@@ -11,8 +17,9 @@ public class NewsItem {
     private String summary;
     private String itemHTML;
     private String site = "https://www.bing.com/";
+    private Image cover;
 
-    public NewsItem(String itemHTML) {
+    public NewsItem(String itemHTML) throws IOException {
         this.itemHTML = itemHTML;
         createNewsItem();
     }
@@ -49,7 +56,7 @@ public class NewsItem {
         this.summary = summary;
     }
 
-    private void createNewsItem() {
+    private void createNewsItem() throws IOException {
 
         String logo = extractInfo("src=\"/th?id=", "&qlt=30\"", 5, 6);
         setChannelLogo(logo);
@@ -67,9 +74,11 @@ public class NewsItem {
         String summary = extractInfo("...\">", "...</div>", 5, 0);
         setSummary(summary);
 
-        // ...">
-        //...</div>
-
+        String coverImgUrl = extractInfo("data-src-hq=", "&amp;pid",12 ,0);
+        URL url;
+        url = new URL(coverImgUrl);
+        Image coverImg = ImageIO.read(url);
+        cover = coverImg;
     }
 
     private String extractInfo(String startPattern, String endPattern, int startInc, int endInc) {
@@ -89,11 +98,13 @@ public class NewsItem {
     }
 
 
-
-
     @Override
     public String toString() {
         return "Logo:" + this.channelLogo + "\n" + "Time Posted: " + this.postTime + "\nHeadline: " + this.headline + " \nSummary: " + this.summary + "\n";
+    }
+
+    public Image getCover() {
+        return cover;
     }
 
 }
