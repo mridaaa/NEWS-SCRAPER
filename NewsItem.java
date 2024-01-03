@@ -74,9 +74,9 @@ public class NewsItem {
         String summary = extractInfo("...\">", "...</div>", 5, 0);
         setSummary(summary);
 
-        String coverImgUrl = extractInfo("data-src-hq=", "&amp;pid",12 ,0);
-        URL url;
-        url = new URL(coverImgUrl);
+        String coverImgUrl = "https://bing.com" + extractInfo("data-src-hq=", "&amp;pid",12 , 1);
+        coverImgUrl = coverImgUrl.replace("\"", "");
+        URL url = new URL(coverImgUrl);
         Image coverImg = ImageIO.read(url);
         cover = coverImg;
     }
@@ -106,5 +106,6 @@ public class NewsItem {
     public Image getCover() {
         return cover;
     }
+
 
 }
