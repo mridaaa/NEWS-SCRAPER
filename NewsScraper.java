@@ -63,7 +63,7 @@ public class NewsScraper {
         String url = Constants.NEWS_SITE_URL + newsTopic.replace(" ", "+");
         String html = ns.getHTML(url);
 
-        News news = ns.getHeadlines(html, "<div class=\"news-card newsitem cardcommon\"");
+        News news = ns.getHeadlines(html, Constants.NEWS_ITEM_PATTERN);
         System.out.println(news);
     }
 
