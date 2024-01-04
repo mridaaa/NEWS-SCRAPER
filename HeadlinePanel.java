@@ -16,22 +16,41 @@ public class HeadlinePanel extends JPanel{
     }
 
     public void paintComponent(Graphics g) {
-        g.drawImage(image, 500, 75,300,200,null);
+        //image
+        g.setColor(Color.BLACK);
+        g.drawImage(image, 500, 100,300,200,null);
+        g.drawRect(500, 100, 300, 200);
+
+        //heading
+        Font font  = new Font("Verdana", Font.BOLD, 14);
+        g.setFont(font);
         char[] title = new char[headline.length()];
         for(int i = 0; i<headline.length(); i++) {
             title[i] = headline.charAt(i);
         }
+        g.drawChars(title,0,headline.length(),100,50);
 
-        char[] subtitle = new char[subheadline.length()];
+        //subheading
+        font = new Font("Verdana", Font.PLAIN, 11);
+        g.setFont(font);
+        char[] subtitle = new char[subheadline.length()+3];
         for(int i = 0; i<subheadline.length(); i++) {
             subtitle[i] = subheadline.charAt(i);
         }
-        g.drawChars(subtitle, 0,subheadline.length(), 550,50);
+        subtitle[subheadline.length()] = '.';
+        subtitle[subheadline.length()+1] = '.';
+        subtitle[subheadline.length()+2] = '.';
+        g.drawChars(subtitle, 0,subheadline.length()+3, 125,75);
 
+
+        //date posted
+        font = new Font("Verdana", Font.PLAIN, 9);
+        g.setFont(font);
         char[] postDate = new char[datePosted.length()];
         for(int i = 0; i<datePosted.length(); i++) {
             subtitle[i] = datePosted.charAt(i);
         }
-        g.drawChars(postDate, 0,datePosted.length(), 600,50);
+        g.drawChars(postDate, 0,datePosted.length(),150,100);
+
     }
 }

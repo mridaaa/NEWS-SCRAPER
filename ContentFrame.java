@@ -23,6 +23,8 @@ public class ContentFrame extends JFrame {
         HeadlinePanel panel3 = new HeadlinePanel(news.thirdItem.getCover(), news.thirdItem.getHeadline(), news.thirdItem.getSummary(), news.thirdItem.getPostTime());
 
         JPanel p= (JPanel) getContentPane();
+        Color bgColor = new Color(255,252,235);
+        p.setBackground(bgColor);
         p.setLayout(new GridLayout(3,3)); //set your own layout
         p.add(panel1);
         p.add(panel2);
