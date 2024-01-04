@@ -51,20 +51,20 @@ public class NewsItem {
 
     private void createNewsItem() {
 
-        String logo = extractInfo("src=\"/th?id=", "&qlt=30\"", 5, 6);
+        String logo = extractInfo(Constants.LOGO_START_PATTERN, Constants.LOGO_END_PATTERN, 5, 6);
         setChannelLogo(logo);
         //System.out.println(logo);
         //ago">
-        String postTime = extractInfo("ago\">", "ago\">", 5, 8);
+        String postTime = extractInfo(Constants.POST_TIME_START_PATTERN, Constants.POST_TIME_END_PATTERN, 5, 8);
         if(postTime.contains("<")) {
             postTime = postTime.replace("<", "");
         }
         setPostTime(postTime);
 
-        String headline = extractInfo("data-title=\"", "data-author=", 12, -2);
+        String headline = extractInfo(Constants.HEADLINE_START_PATTERN, Constants.HEADLINE_END_PATTERN, 12, -2);
         setHeadline(headline);
 
-        String summary = extractInfo("...\">", "...</div>", 5, 0);
+        String summary = extractInfo(Constants.SUMMARY_START_PATTERN, Constants.SUMMARY_END_PATTERN, 5, 0);
         setSummary(summary);
 
         // ...">
