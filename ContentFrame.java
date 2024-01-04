@@ -11,7 +11,7 @@ public class ContentFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
 
-        String newsKeyword = JOptionPane.showInputDialog("Search Bing News");
+        String newsKeyword =  customDialogBox();
         setTitle(newsKeyword.toUpperCase() + " TOP 3 BING NEWS RESULTS ");
         NewsScraper ns = new NewsScraper();
         String url = Constants.NEWS_SITE_URL + newsKeyword.replace(" ", "+");
@@ -31,31 +31,19 @@ public class ContentFrame extends JFrame {
         p.add(panel3);
     }
 
+    private String customDialogBox() {
+        UIManager.put("OptionPane.messageFont" , new Font("Verdana", Font.BOLD, 14));
+        Icon icon = new ImageIcon("tempicon.jpeg");
+        UIManager.put("OptionPane.messageIcon", icon);
+        Object[] selectionValues = {"Enter"};
+
+        String userInput = (String)JOptionPane.showInputDialog(
+                null, "Search Bing News", "Bing News Scraper", JOptionPane.QUESTION_MESSAGE, icon, null, null
+        );
+        return userInput;
+    }
+
     public static void main(String[] args) throws IOException {
-
-        /*Scanner ear = new Scanner(System.in);
-        System.out.println("Enter a topic: ");
-        String newsTopic = ear.nextLine();
-
-         */
-
-
-
-        /*JFrame gui = new JFrame();
-        gui.setSize(720,1080);
-        gui.setTitle(newsTopic + " Top Three Bing Results");
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gui.add(panel1);
-        gui.add(panel2);
-        gui.add(panel3);
-        gui.setVisible(true);
-
-         */
         ContentFrame f = new ContentFrame();
-       // f.setVisible(true);
-
-
-       // System.out.println(news.firstItem.getTest());
-
     }
 }

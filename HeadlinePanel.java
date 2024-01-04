@@ -46,11 +46,7 @@ public class HeadlinePanel extends JPanel{
         //date posted
         font = new Font("Verdana", Font.PLAIN, 9);
         g.setFont(font);
-        char[] postDate = new char[datePosted.length()];
-        for(int i = 0; i<datePosted.length(); i++) {
-            subtitle[i] = datePosted.charAt(i);
-        }
-        g.drawChars(postDate, 0,datePosted.length(),150,100);
+        g.drawString(datePosted,150,100);
 
     }
 }

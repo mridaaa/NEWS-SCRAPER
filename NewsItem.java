@@ -62,7 +62,7 @@ public class NewsItem {
         setChannelLogo(logo);
         //System.out.println(logo);
         //ago">
-        String postTime = extractInfo(Constants.POST_TIME_START_PATTERN, Constants.POST_TIME_END_PATTERN, 5, 8);
+        String postTime = "Posted " + extractInfo(Constants.POST_TIME_START_PATTERN, Constants.POST_TIME_END_PATTERN, 5, 8) + " ago";
         if(postTime.contains("<")) {
             postTime = postTime.replace("<", "");
         }
@@ -82,14 +82,12 @@ public class NewsItem {
             URL url = new URL(coverImgUrl);
             cover = ImageIO.read(url);
         } catch (IOException e) {
-            System.out.println("An image exception occurred, so we will just display a default image here");
             URL url = new URL("https://www.shutterstock.com/shutterstock/videos/1090538971/thumb/1.jpg?ip=x480");
             cover = ImageIO.read(url);
         }
     }
 
     private String extractInfo(String startPattern, String endPattern, int startInc, int endInc) {
-
         int infoBeginIndex = itemHTML.indexOf(startPattern);
         int infoEndIndex = itemHTML.indexOf(endPattern);
         infoBeginIndex += startInc;
