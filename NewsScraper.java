@@ -4,6 +4,7 @@
  *
  */
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class NewsScraper {
@@ -13,7 +14,7 @@ public class NewsScraper {
         return html;
     }
 
-    public News getHeadlines(String html, String pattern) {
+    public News getHeadlines(String html, String pattern) throws IOException {
         int beginIndex = html.indexOf(pattern);
 
         // Default to 0, assigned in the while loop
@@ -52,7 +53,7 @@ public class NewsScraper {
         return news;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner ear = new Scanner(System.in);
         System.out.println("Enter a topic: ");

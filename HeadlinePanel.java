@@ -5,38 +5,33 @@ import java.io.IOException;
 public class HeadlinePanel extends JPanel{
     Image image;
     String headline;
-    public enum articleNum {
-        ONE,
-        TWO,
-        THREE
-    }
-    private articleNum num;
+    String subheadline;
+    String datePosted;
 
-    public HeadlinePanel(Image image, String headline, articleNum num) {
+    public HeadlinePanel(Image image, String headline, String subHeadline, String datePosted) {
         this.image = image;
         this.headline = headline;
-        this.num = num;
+        this.subheadline = subHeadline;
+        this.datePosted = datePosted;
     }
 
     public void paintComponent(Graphics g) {
-        int xOffset = 0;
-        int yOffset = 200;
-
-        switch(num) {
-            case ONE:
-                break;
-            case TWO:
-                xOffset = 350;
-                break;
-            case THREE:
-                xOffset = 700;
-        }
-
-        g.drawImage(image, xOffset, yOffset,300,200,null);
+        g.drawImage(image, 500, 75,300,200,null);
         char[] title = new char[headline.length()];
         for(int i = 0; i<headline.length(); i++) {
             title[i] = headline.charAt(i);
         }
-        g.drawChars(title, 0,headline.length(), 0,yOffset - 10);
+
+        char[] subtitle = new char[subheadline.length()];
+        for(int i = 0; i<subheadline.length(); i++) {
+            subtitle[i] = subheadline.charAt(i);
+        }
+        g.drawChars(subtitle, 0,subheadline.length(), 550,50);
+
+        char[] postDate = new char[datePosted.length()];
+        for(int i = 0; i<datePosted.length(); i++) {
+            subtitle[i] = datePosted.charAt(i);
+        }
+        g.drawChars(postDate, 0,datePosted.length(), 600,50);
     }
 }

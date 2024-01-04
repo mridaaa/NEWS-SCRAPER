@@ -74,11 +74,18 @@ public class NewsItem {
         String summary = extractInfo(Constants.SUMMARY_START_PATTERN, Constants.SUMMARY_END_PATTERN, 5, 0);
         setSummary(summary);
 
-        String coverImgUrl = "https://bing.com" + extractInfo("data-src-hq=", "&amp;pid",12 , 1);
-        coverImgUrl = coverImgUrl.replace("\"", "");
-        URL url = new URL(coverImgUrl);
-        Image coverImg = ImageIO.read(url);
-        cover = coverImg;
+        try {
+            String coverImgUrl = "https://bing.com" + extractInfo("data-src-hq=", "&amp;pid", 12, 1);
+            coverImgUrl = coverImgUrl.replace("\"", "");
+            if (coverImgUrl.contains(" newsitem")) return;
+            // System.out.println(coverImgUrl);
+            URL url = new URL(coverImgUrl);
+            cover = ImageIO.read(url);
+        } catch (IOException e) {
+            System.out.println("An image exception occurred, so we will just display a default image here");
+            URL url = new URL("https://www.shutterstock.com/shutterstock/videos/1090538971/thumb/1.jpg?ip=x480");
+            cover = ImageIO.read(url);
+        }
     }
 
     private String extractInfo(String startPattern, String endPattern, int startInc, int endInc) {
