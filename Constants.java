@@ -1,3 +1,8 @@
+/*
+Date: 1/4/23
+Author: Mrida Yawale
+Purpose: Stores patterns for webscraping
+ */
 public class Constants {
     public static final String NEWS_SITE_URL = "https://www.bing.com/news/search?count=50&offset=0&q=";
     public static final String NOT_AVAILABLE = "**NOT AVAILABLE**";
@@ -10,5 +15,4 @@ public class Constants {
     public static final String HEADLINE_END_PATTERN = "data-author=";
     public static final String SUMMARY_START_PATTERN = "...\">";
     public static final String SUMMARY_END_PATTERN = "...</div>";
-
 }

@@ -35,25 +35,5 @@ public class URLReader {
             e.printStackTrace();
         }
         return content.toString();
-
     }
-
-    public static void main(String[] args) {
-        URLReader ur = new URLReader("https://www.bing.com/news/search?q=2024+election");
-        String testHTML = ur.readURL();
-        System.out.println(testHTML);
-
-        String filePath = "news.html";
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-
-            writer.write(testHTML);
-
-            System.out.println("Content has been written to the file successfully.");
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-    }
-
 }

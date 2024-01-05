@@ -1,7 +1,7 @@
 /*
  * December 28, 2023
  * Author: Mrida Yawale
- *
+ * Purpose: Finds and stores headlines of the three news items
  */
 
 import java.io.IOException;
@@ -53,21 +53,4 @@ public class NewsScraper {
         return news;
     }
 
-    public static void main(String[] args) throws IOException {
-
-        Scanner ear = new Scanner(System.in);
-        System.out.println("Enter a topic: ");
-        String newsTopic = ear.nextLine();
-
-        NewsScraper ns = new NewsScraper();
-        String url = Constants.NEWS_SITE_URL + newsTopic.replace(" ", "+");
-        String html = ns.getHTML(url);
-
-        News news = ns.getHeadlines(html, Constants.NEWS_ITEM_PATTERN);
-        System.out.println(news.getFirstItem().getPostTime());
-    }
-
-    public String getFirst(String headlines) {
-        return null;
-    }
 }

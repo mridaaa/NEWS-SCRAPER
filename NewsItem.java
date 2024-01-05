@@ -1,13 +1,12 @@
 /*
  * December 28, 2023
- * Author: Mrida Yawale
- * 
+ * Authors: Mrida Yawale, Anushka Dole
+ * Purpose: get info about each individual news item
  */
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NewsItem {
@@ -60,8 +59,7 @@ public class NewsItem {
 
         String logo = extractInfo(Constants.LOGO_START_PATTERN, Constants.LOGO_END_PATTERN, 5, 6);
         setChannelLogo(logo);
-        //System.out.println(logo);
-        //ago">
+
         String postTime = "Posted " + extractInfo(Constants.POST_TIME_START_PATTERN, Constants.POST_TIME_END_PATTERN, 5, 8) + " ago";
         if(postTime.contains("<")) {
             postTime = postTime.replace("<", "");
@@ -82,7 +80,7 @@ public class NewsItem {
             URL url = new URL(coverImgUrl);
             cover = ImageIO.read(url);
         } catch (IOException e) {
-            URL url = new URL("https://www.shutterstock.com/shutterstock/videos/1090538971/thumb/1.jpg?ip=x480");
+            URL url = new URL("https://artsmidnorthcoast.com/wp-content/uploads/2014/05/no-image-available-icon-6-300x188.png");
             cover = ImageIO.read(url);
         }
     }
@@ -111,6 +109,4 @@ public class NewsItem {
     public Image getCover() {
         return cover;
     }
-
-
 }

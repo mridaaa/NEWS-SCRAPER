@@ -1,4 +1,8 @@
-// getters + setters for top three
+/*
+Purpose: getters + setters for top three Bing News results
+Date: 1/3/23
+Author: Mrida Yawale
+ */
 public class News {
     NewsItem firstItem;
     NewsItem secondItem;

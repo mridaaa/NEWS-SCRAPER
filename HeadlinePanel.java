@@ -1,12 +1,18 @@
+/*
+Purpose: Visual (JPanel) for each headline
+Author: Anushka D
+Date: 1/3/2024
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
 public class HeadlinePanel extends JPanel{
-    Image image;
-    String headline;
-    String subheadline;
-    String datePosted;
+    private Image image;
+    private String headline;
+    private String subheadline;
+    private String datePosted;
 
     public HeadlinePanel(Image image, String headline, String subHeadline, String datePosted) {
         this.image = image;
@@ -19,7 +25,7 @@ public class HeadlinePanel extends JPanel{
         //image
         g.setColor(Color.BLACK);
         g.drawImage(image, 500, 100,300,200,null);
-        g.drawRect(500, 100, 300, 200);
+        if(image != null) g.drawRect(500, 100, 300, 200);
 
         //heading
         Font font  = new Font("Verdana", Font.BOLD, 14);
@@ -29,6 +35,8 @@ public class HeadlinePanel extends JPanel{
             title[i] = headline.charAt(i);
         }
         g.drawChars(title,0,headline.length(),100,50);
+
+        if(image== null) return;
 
         //subheading
         font = new Font("Verdana", Font.PLAIN, 11);

@@ -1,3 +1,9 @@
+/*
+Author: Anushka Dole
+Purpose: Displays GUI for webscraper
+Date: 1/4/23
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -18,24 +24,29 @@ public class ContentFrame extends JFrame {
         String html = ns.getHTML(url);
         News news = ns.getHeadlines(html, "<div class=\"news-card newsitem cardcommon\"");
 
-        HeadlinePanel panel1 = new HeadlinePanel(news.firstItem.getCover(), news.firstItem.getHeadline(), news.firstItem.getSummary(), news.firstItem.getPostTime());
-        HeadlinePanel panel2 = new HeadlinePanel(news.secondItem.getCover(), news.secondItem.getHeadline(), news.secondItem.getSummary(), news.secondItem.getPostTime());
-        HeadlinePanel panel3 = new HeadlinePanel(news.thirdItem.getCover(), news.thirdItem.getHeadline(), news.thirdItem.getSummary(), news.thirdItem.getPostTime());
-
         JPanel p= (JPanel) getContentPane();
         Color bgColor = new Color(255,252,235);
         p.setBackground(bgColor);
         p.setLayout(new GridLayout(3,3)); //set your own layout
-        p.add(panel1);
-        p.add(panel2);
-        p.add(panel3);
+
+        if (news.getFirstItem() == null || news.getSecondItem() == null || news.getThirdItem() == null) {
+            HeadlinePanel panel = new HeadlinePanel(null,"No results", "","");
+            p.add(panel);
+        } else {
+            HeadlinePanel panel1 = new HeadlinePanel(news.firstItem.getCover(), news.firstItem.getHeadline(), news.firstItem.getSummary(), news.firstItem.getPostTime());
+            HeadlinePanel panel2 = new HeadlinePanel(news.secondItem.getCover(), news.secondItem.getHeadline(), news.secondItem.getSummary(), news.secondItem.getPostTime());
+            HeadlinePanel panel3 = new HeadlinePanel(news.thirdItem.getCover(), news.thirdItem.getHeadline(), news.thirdItem.getSummary(), news.thirdItem.getPostTime());
+
+            p.add(panel1);
+            p.add(panel2);
+            p.add(panel3);
+        }
     }
 
     private String customDialogBox() {
         UIManager.put("OptionPane.messageFont" , new Font("Verdana", Font.BOLD, 14));
         Icon icon = new ImageIcon("tempicon.jpeg");
         UIManager.put("OptionPane.messageIcon", icon);
-        Object[] selectionValues = {"Enter"};
 
         String userInput = (String)JOptionPane.showInputDialog(
                 null, "Search Bing News", "Bing News Scraper", JOptionPane.QUESTION_MESSAGE, icon, null, null
